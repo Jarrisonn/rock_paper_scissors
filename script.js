@@ -2,6 +2,7 @@ let cpuResult;
 let userSelect;
 let userScore = 0;
 let cpuScore = 0;
+//function that generates the computers choice
 computerPlay = () => {
     
     min = Math.ceil(1);
@@ -17,7 +18,7 @@ computerPlay = () => {
     return cpuResult;
 }
 
-
+//function allowing user to input choice
 userPlay = cpuResult => {
     userSelect = window.prompt("Select Rock, Paper or Scissors");
     userSelect = userSelect.toLowerCase();
@@ -25,7 +26,7 @@ userPlay = cpuResult => {
     console.log(`the computer has selected ${cpuResult}`);
     return userSelect;
 }
-
+//logic of game, ie paper beats rock
 game = (cpuResult, userSelect) => {
   if (cpuResult == userSelect) {
     console.log("Tie");
@@ -56,6 +57,7 @@ game = (cpuResult, userSelect) => {
 
 //play 5 games
 playGame = () =>{
+    //calls other methods in a loop to create multiple games
     for(let i = 0; i < 5; i++){
         computerPlay();
         userPlay(cpuResult);
