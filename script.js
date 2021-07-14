@@ -2,6 +2,18 @@ let userSelect;
 let userScore = 0;
 let cpuScore = 0;
 
+let container = document.querySelector(".container");
+let h2GameState = document.createElement("h2");
+let h2ComputerChoice = document.createElement("h2");
+let userScoreDom = document.createElement("h3");
+let cpuScoreDom = document.createElement("h3");
+let endText = document.createElement("h3");
+container.appendChild(h2ComputerChoice);
+container.appendChild(h2GameState);
+container.appendChild(userScoreDom);
+container.appendChild(cpuScoreDom);
+container.appendChild(endText);
+
 //function that generates the computers choice
 computerPlay = () => {
   let cpuResult;
@@ -30,98 +42,58 @@ document.querySelectorAll(".btn").forEach((btn) => {
     let choice = e.target.textContent.toLowerCase();
     console.log(`user has chosen ${choice}`);
     game2(computed, choice);
-    computed = computerPlay(); 
+    computed = computerPlay();
   });
 });
-
-
 
 //logic of game, ie paper beats rock
 
 game2 = (computed, choice) => {
   if (computed == choice) {
-    console.log("Tie");
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
+    h2GameState.textContent = "Game is a tie";
   } else if (computed == "rock" && choice == "paper") {
     userScore++;
-    console.log("User wins, paper beats rock");
+    userScoreDom.innerText = `The user has ${userScore} points`;
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
+    h2GameState.textContent = "User wins, paper beats rock";
   } else if (computed == "paper" && choice == "rock") {
     cpuScore++;
+    cpuScoreDom.innerText = `The cpu has ${cpuScore} points`;
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
     console.log("CPU wins, paper beats rock");
+    h2GameState.textContent = "CPU wins, paper beats rock";
   } else if (computed == "paper" && choice == "scissors") {
     userScore++;
+    userScoreDom.innerText = `The user has ${userScore} points`;
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
     console.log("User wins, scissors beats paper");
+    h2GameState.textContent = "User wins, scissors beats paper";
   } else if (computed == "scissors" && choice == "paper") {
     cpuScore++;
+    cpuScoreDom.innerText = `The cpu has ${cpuScore} points`;
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
     console.log("CPU wins, scissors beats paper");
+    h2GameState.textContent = "CPU wins, scissors beats paper";
   } else if (computed == "scissors" && choice == "rock") {
     userScore++;
+    userScoreDom.innerText = `The user has ${userScore} points`;
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
     console.log("User wins, rock beats scissors");
+    h2GameState.textContent = "User wins, rock beats scissors";
   } else if (computed == "rock" && choice == "scissors") {
     cpuScore++;
+    cpuScoreDom.innerText = `The cpu has ${cpuScore} points`;
+    h2ComputerChoice.innerText = `The computer has chosen ${computed}`;
     console.log("CPU wins, rock beats scissors");
+    h2GameState.textContent = "CPU wins, rock beats scissors";
   }
   console.log(`User score is ${userScore}`);
   console.log(`CPU score is ${cpuScore}`);
-};
+  if(userScore === 5){
+    endText.textContent = `The User has 5 points, you win!`
+  }else if(cpuScore === 5){
+    endText.textContent = `The Computer has 5 points, you lose!`
 
-/*
-game = (cpuResult, userSelect) => {
-  if (cpuResult == userSelect) {
-    console.log("Tie");
-  } else if (cpuResult == "rock" && userSelect == "paper") {
-    userScore++;
-    console.log("User wins, paper beats rock");
-  } else if (cpuResult == "paper" && userSelect == "rock") {
-    cpuScore++;
-    console.log("CPU wins, paper beats rock");
-  } else if (cpuResult == "paper" && userSelect == "scissors") {
-    userScore++;
-    console.log("User wins, scissors beats paper");
-  } else if (cpuResult == "scissors" && userSelect == "paper") {
-    cpuScore++;
-    console.log("CPU wins, scissors beats paper");
-  } else if (cpuResult == "scissors" && userSelect == "rock") {
-    userScore++;
-    console.log("User wins, rock beats scissors");
-  } else if (cpuResult == "rock" && userSelect == "scissors") {
-    cpuScore++;
-    console.log("CPU wins, rock beats scissors");
-  }
-  console.log(`User score is ${userScore}`);
-  console.log(`CPU score is ${cpuScore}`);
-};
-*/
-
-/*
-//play 5 games
-playGame = () => {
-  //calls other methods in a loop to create multiple games
-
-  computerPlay();
-  userPlay(cpuResult);
-  game(cpuResult, userSelect);
-
-  if (userScore > cpuScore) {
-    console.log(
-      `The user wins scoring ${userScore} and the cpu loses scoring ${cpuScore}`
-    );
-  } else if (cpuScore > userScore) {
-    console.log(
-      `The user loses scoring ${userScore} and the cpu wins scoring ${cpuScore}`
-    );
-  } else {
-    console.log(`the game is a tie with cpu and user scoring ${userScore}`);
   }
 };
-*/
-
-/*Add an event listener to the buttons that calls your playRound function with the correct 
-playerSelection every time a button is clicked. 
-(you can keep the console.logs for this step)*/
-
-/*btn.addEventListener("click", e => {
-
-console.log(e.target);
-})
-*/
-
